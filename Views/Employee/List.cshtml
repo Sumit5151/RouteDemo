@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "List View";
+
+}
+
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>
+                SrNo
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Department
+            </th>
+
+            <th>
+                Address
+            </th>
+
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @{
+            foreach (var emp in @Model)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Gender.Text</td>
+                    <td>@emp.Department.Name</td>
+
+                    @{
+                        //    var addressColumn = "";
+                        //    var addressRow = @emp.Addresses.FirstOrDefault(x=>x.IsPreferred == true);
+                        //    if (addressRow != null)
+                        //    {
+                        //        addressColumn = addressRow.Address1;
+                        //    }
+                        //}
+                        //<td>@addressColumn</td>
+
+
+                        var addressColumn = "";
+
+                        if (@emp.Addresses.Count > 0)
+                        {
+                            foreach (var row in @emp.Addresses)
+                            {
+                                addressColumn = addressColumn + row.Address1 + " ";
+                            }
+
+                        }
+                    }
+                    <td>@addressColumn</td>
+
+
+
+                    <td>
+                        <a asp-action="Delete" asp-controller="Employee" asp-route-id="@emp.Id"
+                   asp-route-name="@emp.Name">Delete</a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Employee" asp-route-id="@emp.Id"
+                   asp-route-name="@emp.Name">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
