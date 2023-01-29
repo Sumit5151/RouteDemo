@@ -1,0 +1,85 @@
+﻿@model EmployeeViewModel
+
+<h3>Create Employee View</h3>
+
+
+<div class="container">
+
+    <div class="row">
+        <form method="post" asp-action="Create" asp-controller="Employee">
+            <div class="col-md-6  offset-3">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+
+
+
+                <div class="form-group">
+                    <label asp-for="employee.Name"></label>
+                    <input asp-for="employee.Name" class="form-control" />
+                    <span asp-validation-for="employee.Name" class="text-danger"></span>
+                </div>
+
+
+
+                  <div class="form-group">
+                    <label asp-for="employee.GenderId"></label>
+                    <select asp-for="employee.GenderId" class="form-control">
+                        <option value="">-Select Gender-</option>
+                        @{
+                            foreach (var gender in ViewBag.Genders)
+                            {
+                                <option value="@gender.Id">@gender.Text</option>
+                            }
+                        }
+
+                    </select>
+                    <span asp-validation-for="employee.GenderId" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="employee.DepartmentId"></label>
+                    <select asp-for="employee.DepartmentId" class="form-control">
+                        <option value="">-Select Department-</option>
+                        @{
+                            foreach (var dept in ViewBag.Departments)
+                            {
+                                <option value="@dept.Id">@dept.Name</option>
+                            }
+                        }
+
+                    </select>
+                    <span asp-validation-for="employee.DepartmentId" class="text-danger"></span>
+                </div>
+
+
+                  <div class="form-group">
+                    <label asp-for="address.Address1"></label>
+                    <textarea asp-for="address.Address1" class="form-control"></textarea>
+                    <span asp-validation-for="address.Address1" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">Submit</button>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(doucument).ready(function(){
+
+
+
+
+
+    });
+</script>
+
+
+
